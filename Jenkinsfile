@@ -26,7 +26,7 @@ pipeline {
         stage('Maven: Build & Test') {
             when {
                 expression {
-                    params.tools == 'maven'
+                    params.tools == 'Maven'
                 }
             }
             steps {
@@ -39,7 +39,7 @@ pipeline {
         stage('Maven: Sonar') {
             when {
                 expression {
-                    params.tools == 'maven'
+                    params.tools == 'Maven'
                 }
             }
 
@@ -56,7 +56,7 @@ pipeline {
         stage('Gradle: Build & test') {
             when {
                 expression {
-                    params.tools == 'gradle'
+                    params.tools == 'Gradle'
                 }
             }
             steps {
@@ -67,6 +67,12 @@ pipeline {
         }
 
         stage('Gradle: Sonar') {
+            when {
+                expression {
+                    params.tools == 'Gradle'
+                }
+            }
+
             steps {
                 withSonarQubeEnv(credentialsId: 'jenkins-sonar', installationName: 'sonar-jenkins') {
                     script {
