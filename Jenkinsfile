@@ -15,8 +15,8 @@ pipeline {
         stage('Load Scripts'){
             steps{
                 script{
-                    mvn-groovyScript = load "maven.groovy"
-                    grdl-groovyScript = load "gradle.groovy"
+                    mvn_groovyScript = load "maven.groovy"
+                    grdl_groovyScript = load "gradle.groovy"
                 }
             }
         }
@@ -30,7 +30,7 @@ pipeline {
             }
             steps {
                 script {
-                    mvn-groovyScript.cInstall();
+                    mvn_groovyScript.cInstall();
                 }
             }
         }
@@ -44,9 +44,9 @@ pipeline {
 
             steps {
                 withSonarQubeEnv(credentialsId: 'jenkins-sonar', installationName: 'sonar-jenkins') {
-                     script {
-                          mvn-groovyScript.sonarMaven
-                     }
+                    script {
+                        mvn_groovyScript.sonarMaven
+                    }
                 }
             }
         }
@@ -60,7 +60,7 @@ pipeline {
             }
             steps {
                 script {
-                    grdl-groovyScript.buildGradle()
+                    mvn_groovyScript.buildGradle()
                 }
             }
         }
@@ -68,21 +68,11 @@ pipeline {
         stage('Gradle: Sonar') {
             steps {
                 withSonarQubeEnv(credentialsId: 'jenkins-sonar', installationName: 'sonar-jenkins') {
-                     script {
-                         grdl-groovyScript.sonarGradle()
-                     }
+                    script {
+                        mvn_groovyScript.sonarGradle()
+                    }
                 }
             }
         }
-
-
-        //stage('Upload Nexus') {
-            //steps {
-                //script {
-                    //echo 'nexus'
-                    //nexusPublisher nexusInstanceId: 'nxs01', nexusRepositoryId: 'ejercicio-clase4-mod4', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'build/DevOpsUsach2020-1.0.0.jar']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '1.0.0']]]
-                //}
-            //}
-        //}
     }
 }
