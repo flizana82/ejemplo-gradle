@@ -9,7 +9,7 @@ pipeline {
     }
 
     parameters{
-        choice(name: 'tools', choices: ['Gradle','Maven'], description: 'Elegir Opción: ')
+        choice(name: 'tools_', choices: ['Gradle','Maven'], description: 'Elegir Opción: ')
     }
 
     stages {
@@ -26,7 +26,7 @@ pipeline {
         stage('Maven: Build & Test') {
             when {
                 expression {
-                    params.tools == 'Maven'
+                    params.tools_ == 'Maven'
                 }
             }
             steps {
@@ -39,7 +39,7 @@ pipeline {
         stage('Maven: Sonar') {
             when {
                 expression {
-                    params.tools == 'Maven'
+                    params.tools_ == 'Maven'
                 }
             }
 
@@ -56,7 +56,7 @@ pipeline {
         stage('Gradle: Build & test') {
             when {
                 expression {
-                    params.tools == 'Gradle'
+                    params.tools_ == 'Gradle'
                 }
             }
             steps {
@@ -69,7 +69,7 @@ pipeline {
         stage('Gradle: Sonar') {
             when {
                 expression {
-                    params.tools == 'Gradle'
+                    params.tools_ == 'Gradle'
                 }
             }
 
