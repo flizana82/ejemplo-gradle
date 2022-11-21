@@ -7,8 +7,9 @@ pipeline {
         gradle 'grdl'
         maven 'maven'
     }
+
     parameters{
-        choice(name: 'tools', choices: ['Gradle','Maven'],'Elegir Opción')
+        choice(name: 'tools', choices: ['Gradle','Maven'], description: 'Elegir Opción: ')
     }
 
     stages {
