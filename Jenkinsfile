@@ -1,5 +1,5 @@
-def mvn-groovyScript
-def grdl-groovy
+def mvn_groovyScript
+def grdl_groovyScript
 
 pipeline {
     agent any
