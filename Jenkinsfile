@@ -42,7 +42,6 @@ pipeline {
                     params.tools_ == 'Maven'
                 }
             }
-
             steps {
                 withSonarQubeEnv(credentialsId: 'jenkins-sonar', installationName: 'sonar-jenkins') {
                     script {
@@ -61,7 +60,7 @@ pipeline {
             }
             steps {
                 script {
-                    mvn_groovyScript.buildGradle()
+                    grdl_groovyScript.buildGradle()
                 }
             }
         }
@@ -76,7 +75,7 @@ pipeline {
             steps {
                 withSonarQubeEnv(credentialsId: 'jenkins-sonar', installationName: 'sonar-jenkins') {
                     script {
-                        mvn_groovyScript.sonarGradle()
+                        grdl_groovyScript.sonarGradle()
                     }
                 }
             }
