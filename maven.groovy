@@ -1,6 +1,7 @@
 
 
 def cInstall(){
+    sh "chmod +x mvnw"
     sh './mvnw clean install'
 }
 
